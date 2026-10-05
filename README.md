@@ -71,8 +71,8 @@ python-dotenv
 
 Setup
 1. Clone the repository
-git clone YOUR_REPOSITORY_URL
-cd linkedin-candidate-scraper
+git clone https://github.com/Waliiid1/linkedin-candidate-scraper
+
 
 2. Create a virtual environment
 python -m venv venv
