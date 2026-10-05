@@ -1,210 +1,367 @@
-LinkedIn Candidate Research & Profile Enrichment Tool
+LinkedIn Candidate Scraper 🔎
 
-A Python-based candidate research tool that combines Google search, LinkedIn profile extraction through Apify, and structured profile analysis.
+A Python tool that finds a LinkedIn profile from a person's name, retrieves publicly available profile information using Apify, and organizes the candidate's professional background into a structured format.
 
-The tool accepts a person's full name, identifies a relevant LinkedIn profile, retrieves publicly available profile information through an Apify actor, and organizes the results into a structured candidate profile.
+The project combines Serper API, Apify, Python, and OpenAI to create an automated candidate research workflow.
 
-Features
+🚀 What It Does
 
-Search for LinkedIn profiles using Google/Serper (An attempt to automate the process instead of getting the actual links)
+Enter a person's full name and the application will:
 
-Automatically identify a relevant LinkedIn profile
+🔎 Search Google for the person's LinkedIn profile using Serper.
 
-Retrieve profile information using Apify
+🔗 Identify the most relevant LinkedIn profile.
 
-Extract the full available About/Summary section
+🕷️ Send the LinkedIn URL to Apify's LinkedIn Profile Scraper.
 
-Extract complete work experience history
+📄 Retrieve the available profile information.
 
-Extract education
+💼 Extract the candidate's work experience.
 
-Extract skills
+🎓 Extract education and academic background.
 
-Extract certifications
+🧠 Extract skills, certifications, courses, and projects.
 
-Extract projects
+📋 Organize the information into a readable candidate profile.
 
-Extract courses
+🤖 Use OpenAI for further candidate analysis.
 
-Extract follower and connection counts
+✨ Information Collected
 
-Display structured candidate information
+Depending on what is publicly available, the scraper can retrieve:
 
-Load API credentials securely using environment variables
+💼 Professional Information
 
-Architecture
+Current job title
 
-The workflow is:
+Current company
 
-Candidate Name
-      |
-      v
-Google / Serper
-      |
-      v
-LinkedIn Profile URL
-      |
-      v
-Apify LinkedIn Profile Scraper
-      |
-      v
-Structured JSON Profile
-      |
-      v
-Candidate Analysis / Output
+Previous companies
 
-Technologies
+Job descriptions
 
-Python
+Employment dates
 
-Serper API
+Job locations
 
-Apify API
+Workplace type
 
-OpenAI API
+Skills associated with positions
 
-REST APIs
+Total number of experiences
 
-JSON
+🎓 Education
 
-python-dotenv
+University
 
-Setup
-1. Clone the repository
-git clone https://github.com/Waliiid1/linkedin-candidate-scraper
+Degree
 
+Field of study
 
-2. Create a virtual environment
-python -m venv venv
+Education dates
 
+Education descriptions
 
-Activate it.
+Academic projects
 
-Windows:
+🧠 Skills & Certifications
 
-venv\Scripts\activate
+Technical skills
 
-3. Install dependencies
-pip install -r requirements.txt
+Data analysis skills
 
-4. Configure environment variables
-
-Create a .env file:
-
-OPENAI_API_KEY=your_openai_key
-SERPER_API_KEY=your_serper_key
-APIFY_API_TOKEN=your_apify_token
-
-
-Do not commit .env to GitHub.
-
-A .env.example file is included to show the required variables.
-
-5. Run
-python main.py
-
-
-Enter the candidate's full name when prompted.
-
-Example Workflow
-
-Example:
-
-Enter the person's full name: Walid Ahmed Hassan
-
-
-The program searches for the candidate's LinkedIn profile, sends the profile URL to Apify, retrieves the available profile data, and organizes information such as:
-
-About / Summary
-
-Current position
-
-Previous positions
-
-Companies
-
-Education
-
-Skills
+Data science skills
 
 Certifications
 
-Projects
+Certification providers
+
+Certification dates
 
 Courses
 
-Example Output
-Candidate: Walid Ahmed Hassan
+🚀 Projects
+
+Project names
+
+Project descriptions
+
+Technologies used
+
+Project results and metrics
+
+👤 Profile Information
+
+Full name
+
+LinkedIn username
+
+Profile headline
+
+About / summary section
+
+Location
+
+Followers
+
+Connections
+
+Profile URL
+
+🛠️ Technologies Used
+Technology	Purpose
+🐍 Python	Main application
+🔎 Serper API	Finding LinkedIn profiles through Google search
+🕷️ Apify	Retrieving LinkedIn profile data
+🤖 OpenAI API	Candidate analysis
+🔐 python-dotenv	Managing API keys through .env
+🏗️ How It Works
+                 Candidate Name
+                       │
+                       ▼
+              ┌─────────────────┐
+              │   Serper API    │
+              │  Google Search  │
+              └────────┬────────┘
+                       │
+                       ▼
+                LinkedIn URL
+                       │
+                       ▼
+              ┌─────────────────┐
+              │     Apify       │
+              │ LinkedIn Scraper│
+              └────────┬────────┘
+                       │
+                       ▼
+              Structured Profile
+                       │
+          ┌────────────┼────────────┐
+          ▼            ▼            ▼
+      Experience    Education     Skills
+          │            │            │
+          └────────────┼────────────┘
+                       ▼
+                Candidate Data
+                       │
+                       ▼
+                ┌─────────────┐
+                │   OpenAI    │
+                │  Analysis   │
+                └─────────────┘
+                       │
+                       ▼
+              Candidate Assessment
+
+📁 Project Structure
+linkedin-candidate-scraper/
+│
+├── main.py
+├── README.md
+├── requirements.txt
+└── .env.example
+└──Screenshot
+
+🔑 API Keys
+
+This project uses environment variables so API keys are not written directly into the Python source code.
+
+Create a .env file in the project folder:
+
+OPENAI_API_KEY=your_openai_api_key
+SERPER_API_KEY=your_serper_api_key
+APIFY_API_TOKEN=your_apify_api_token
+
+
+The application loads these values using os.getenv().
+
+
+⚙️ Installation
+1. Clone the repository
+git clone https://github.com/Waliiid1/linkedin-candidate-scraper.git
+
+2. Create a virtual environment
+Windows
+python -m venv venv
+venv\Scripts\activate
+
+Mac / Linux
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install the dependencies
+pip install -r requirements.txt
+
+4. Create your .env file
+
+Add your API keys:
+
+OPENAI_API_KEY=your_key_here
+SERPER_API_KEY=your_key_here
+APIFY_API_TOKEN=your_key_here
+
+5. Run the application
+python main.py
+
+
+Then enter the candidate's full name when prompted.
+
+💻 Example
+Enter the person's full name: Walid Ahmed Hassan
+
+
+The application searches Google using:
+
+site:linkedin.com/in/ "Walid Ahmed Hassan"
+
+
+It identifies the LinkedIn profile and sends the profile URL to Apify.
+
+The resulting data can include (My experience btw):
+
+Name:
+Walid Ahmed Hassan
 
 Current Position:
-Business Intelligence Analyst
+Business Intelligence Analyst at Microsoft
 
-Current Company:
-Microsoft
-
-Location:
-Cairo, Egypt
-
-Experience:
-Microsoft
-Dell Technologies
-Engineeius
-Bluerock For Real Estate
+Previous Experience:
+- Technical Support Engineer — Dell Technologies
+- Information Technology Administrator — Engineeius
+- IT Manager — Engineeius
+- Sales Advisor — Bluerock For Real Estate
+- Sales Specialist — Blue rock Real-Estate
 
 Education:
-The German University in Cairo
+- The German University in Cairo
+- Computer Engineering
+- Electrical Engineering and Computer Science
 
 Skills:
-Data Analysis
-Data Science
-Database Queries
-Microsoft Business Intelligence
-Business Intelligence
+- Data Analysis
+- Data Science
+- Database Queries
+- Microsoft Business Intelligence
+- Business Intelligence
 
 Certifications:
-AWS Certified Cloud Practitioner
-Associate - PowerEdge Version 2.0
+- AWS Certified Cloud Practitioner
+- Associate - PowerEdge Version 2.0
 
-Why I Built This
+Projects:
+- Battery Failure Prediction
+- Face Mask Detection (YOLOv8)
 
-This project was built to explore practical API integration and automated candidate profile research.
+🧠 Why I Built This
 
-It combines multiple external services into a single Python workflow and demonstrates how unstructured web/profile information can be collected and transformed into useful structured data and later on be used by agents to collect relevant data.
+I built this project to explore how multiple APIs can be combined into a practical candidate research workflow.
 
-Important Notes
+The goal was to create a pipeline that could:
 
-This project relies on third-party APIs and the availability/permissions of the selected Apify actor.
+Find → Scrape → Structure → Analyze
 
-Results may vary depending on the information publicly available on a profile and the actor's capabilities.
+Instead of manually searching through a candidate's profile, the application automates the process of finding the profile and organizing the available information.
 
-Users are responsible for complying with the terms of service, privacy requirements, and applicable laws governing the services and data they use.
+📚 What I Learned
 
-Future Improvements
+Through this project, I worked with:
 
-Potential improvements include:
+Python
 
-Candidate scoring
+REST APIs
 
-Job-description matching
+API authentication
 
-Experience/skill gap analysis
+Environment variables
 
-Structured candidate summaries using an LLM
+.env configuration
 
-Export to CSV/JSON
+JSON data
 
-Batch candidate processing
+Nested JSON structures
 
-Duplicate profile detection
+Python dictionaries and lists
 
-Improved search-result validation
+API error handling
 
-Web interface
+Google search APIs
 
-Database storage
+Apify actors
 
-Recruiter dashboard
+LinkedIn profile data
 
-Disclaimer
+OpenAI API integration
 
-This project is intended for educational and research purposes. It does not bypass authentication or access private LinkedIn information.
+Data extraction and transformation
+
+Structuring unorganized information into useful candidate profiles
+
+⚠️ Limitations
+
+The amount of information returned can vary depending on:
+
+LinkedIn profile visibility
+
+Publicly available information
+
+The Apify actor being used
+
+Apify limitations
+
+Serper limitations
+
+API availability
+
+Changes to LinkedIn
+
+The application does not guarantee that every LinkedIn profile will return the same fields or amount of information.
+
+🔐 Privacy & Responsible Use
+
+This project is intended for educational and research purposes.
+
+Users should respect LinkedIn's terms, applicable laws, privacy expectations, and the terms of the APIs and services being used.
+
+Do not use this project to collect sensitive personal information or conduct unauthorized surveillance.
+
+🔮 Future Improvements
+
+ Add a web interface
+
+ Export candidates to CSV
+
+ Export candidates to JSON
+
+ Generate candidate reports as PDF
+
+ Add candidate scoring
+
+ Add job-description matching
+
+ Compare candidates against a job description
+
+ Add structured skill extraction
+
+ Add automated tests
+
+ Improve API error handling
+
+ Support multiple candidates
+
+ Add logging
+
+ Add configurable scraping options
+
+📌 Project Status
+
+Working Prototype
+
+The core workflow is functional:
+
+Name → Google Search → LinkedIn Profile → Apify → Structured Candidate Data
+
+Future versions will focus on improving reliability, candidate analysis, user interface, and data export.
+
+📄 License
+
+This project is currently intended for educational purposes.
